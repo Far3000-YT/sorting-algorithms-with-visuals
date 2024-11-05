@@ -1,4 +1,4 @@
-grid_size = 9
+grid_size = 9 #test
 block_size = 3
 print("haha you got pranked")
 
