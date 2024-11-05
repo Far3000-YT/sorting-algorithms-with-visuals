@@ -4,6 +4,7 @@ import random
 numbers = list(range(1, 1001))
 random.shuffle(numbers)
 
+#base text for input
 print("""
 WELCOME ! Choose the sorting algorithm you want to see : 
     [1] - SELECTION SORT
@@ -16,9 +17,13 @@ WELCOME ! Choose the sorting algorithm you want to see :
 
 ############################################################################################################
 
-
-def selection_sort(numbers: int):
-    pass
+#algorithms start (no explanation on how they work it's too long)
+def selection_sort(numbers: list):
+    index = 1
+    #iterate through the list comparing value and value-1 index, if value-1 is smaller then its good otherwise we reset
+    while index != len(numbers) - 1:
+        if numbers[index-1] <= numbers[index]:
+            pass
 
 
 ############################################################################################################
