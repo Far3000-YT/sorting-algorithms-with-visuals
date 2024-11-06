@@ -1,7 +1,7 @@
 import random
 
 #generate random list from 1 to 1000 not in order
-numbers = list(range(1, 1001))
+numbers = list(range(1, 11))
 random.shuffle(numbers)
 
 #base text for input
@@ -17,13 +17,23 @@ WELCOME ! Choose the sorting algorithm you want to see :
 
 ############################################################################################################
 
+
 #algorithms start (no explanation on how they work it's too long)
 def selection_sort(numbers: list):
+    start_index = 0
     index = 1
-    #iterate through the list comparing value and value-1 index, if value-1 is smaller then its good otherwise we reset
-    while index != len(numbers) - 1:
-        if numbers[index-1] <= numbers[index]:
-            pass
+    min_value = numbers[0]
+    #iterate through the list until we hit the last index (so the list will be sorted when that happens)
+    while start_index != len(numbers) - 1:
+        min_value = min(min_value, numbers[index])
+        if index == len(numbers) - 1:
+            new_val = numbers[numbers.index(min_value)]
+            numbers[start_index], numbers[numbers.index(min_value)] = numbers[numbers.index(min_value)], numbers[start_index]
+            start_index += 1
+            index = start_index
+        else:
+            index += 1
+        print(numbers)
 
 
 ############################################################################################################
