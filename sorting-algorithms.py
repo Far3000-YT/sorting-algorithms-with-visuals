@@ -19,21 +19,24 @@ WELCOME ! Choose the sorting algorithm you want to see :
 
 
 #algorithms start (no explanation on how they work it's too long)
-def selection_sort(numbers: list):
+def selection_sort(num: list):
     start_index = 0
     index = 1
-    min_value = numbers[0]
+    min_value = numbers[start_index]
     #iterate through the list until we hit the last index (so the list will be sorted when that happens)
-    while start_index != len(numbers) - 1:
-        min_value = min(min_value, numbers[index])
-        if index == len(numbers) - 1:
-            new_val = numbers[numbers.index(min_value)]
-            numbers[start_index], numbers[numbers.index(min_value)] = numbers[numbers.index(min_value)], numbers[start_index]
+    while start_index < len(num):
+        min_value = min(min_value, num[index])
+        if index == len(num) - 1:
+            print(start_index, num.index(min_value))
+            
+            #swap the 2 indexes in the list
+            num[start_index], num[num.index(min_value)] = num[num.index(min_value)], num[start_index]
+
             start_index += 1
             index = start_index
         else:
             index += 1
-        print(numbers)
+        print(num)
 
 
 ############################################################################################################
