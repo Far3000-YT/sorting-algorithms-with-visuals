@@ -1,8 +1,8 @@
-import random
-
+import pygame
+from random import shuffle
 #generate random list from 1 to x not in order
 numbers = list(range(1, 1001))
-random.shuffle(numbers)
+shuffle(numbers)
 
 #base text for input
 print("""
@@ -18,7 +18,13 @@ WELCOME ! Choose the sorting algorithm you want to see :
 ############################################################################################################
 
 
-#algorithms start
+#pygame functions here
+
+
+############################################################################################################
+
+
+#selection sort function
 def selection_sort(num: list):
     print(num)
     start_index = 0
