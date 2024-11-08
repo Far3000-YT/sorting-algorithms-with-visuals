@@ -2,7 +2,7 @@ import pygame
 from random import shuffle
 from typing import Callable, Iterator
 
-#generate random list from 1 to x not in order
+#generate random list from 1 to x in order then shuffle them to make them not in order
 numbers = list(range(1, 201))
 shuffle(numbers)
 
@@ -19,12 +19,12 @@ WELCOME ! Choose the sorting algorithm you want to see :
 ############################################################################################################
 
 # pygame functions here
-def pyg(funct: Callable[[list], Iterator], num: list):
+def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the callable)
     pygame.init()
 
     screen_width, screen_height = max(numbers)*5, 400
     screen = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption('Sorting Algorithm Pygame')
+    pygame.display.set_caption('Sorting Algorithms With Visuals')
 
     width, height = screen_width // len(num), screen_height
     sorting_gen = funct(num)
@@ -34,15 +34,14 @@ def pyg(funct: Callable[[list], Iterator], num: list):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                return
         
         try:
             cl = next(sorting_gen)
-            screen.fill((0, 0, 0))  #black
+            screen.fill((0, 0, 0)) #black
 
             for i, value in enumerate(cl):
                 scaled_height = (value / max_value) * screen_height
-                pygame.draw.rect(screen, (255, 255, 0), (i * width, screen_height - scaled_height, width, scaled_height))
+                pygame.draw.rect(screen, (255, 255, 140), (i * width, screen_height - scaled_height, width, scaled_height))
             pygame.display.flip()
         
         except StopIteration:
@@ -56,10 +55,11 @@ def pyg(funct: Callable[[list], Iterator], num: list):
 
 #selection sort function
 def selection_sort(num: list):
-    yield num  #yield the initial state of the list before the sorting starts
+    yield num #yield the initial state of the list before the sorting starts
     start_index = 0
     index = 1
     min_value = num[start_index]
+
     #iterate through the list until we hit the last index (so the list will be sorted when that happens)
     while start_index < len(num):
         min_value = min(min_value, num[index])
@@ -86,11 +86,11 @@ def selection_sort(num: list):
 
 ############################################################################################################
 
-x = input("Choice : ")
+x = input("Input : ")
 
 match x:
     case "1":
-        pyg(selection_sort, numbers)  #Pass the function and numbers
+        pyg(selection_sort, numbers)
     case "2":
         pass
     case "3":
@@ -100,4 +100,4 @@ match x:
     case "5":
         pass
     case _:
-        print("Please put a valid input!")
+        print("Please put a valid input!! :(")
