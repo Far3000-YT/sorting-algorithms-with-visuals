@@ -3,7 +3,8 @@ from random import shuffle
 from typing import Callable, Iterator
 
 #generate random list from 1 to x in order then shuffle them to make them not in order
-numbers = list(range(1, 201))
+maxi = 151
+numbers = list(range(1, maxi))
 shuffle(numbers)
 
 #base text for input
@@ -22,13 +23,12 @@ WELCOME ! Choose the sorting algorithm you want to see :
 def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the callable)
     pygame.init()
 
-    screen_width, screen_height = max(numbers)*5, 400
+    screen_width, screen_height = maxi*6, maxi*3
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption('Sorting Algorithms With Visuals')
 
     width, height = screen_width // len(num), screen_height
     sorting_gen = funct(num)
-    max_value = max(num)
 
     while True:
         for event in pygame.event.get():
@@ -40,12 +40,12 @@ def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the c
             screen.fill((0, 0, 0)) #black
 
             for i, value in enumerate(cl):
-                scaled_height = (value / max_value) * screen_height
+                scaled_height = (value / maxi) * screen_height
                 pygame.draw.rect(screen, (255, 255, 140), (i * width, screen_height - scaled_height, width, scaled_height))
             pygame.display.flip()
         
         except StopIteration:
-            pygame.time.wait(10000) #10 sec wait
+            pygame.time.wait(5000) #10 sec wait
             break
     
     pygame.quit()
@@ -56,6 +56,7 @@ def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the c
 #selection sort function
 def selection_sort(num: list):
     yield num #yield the initial state of the list before the sorting starts
+
     start_index = 0
     index = 1
     min_value = num[start_index]
@@ -86,13 +87,24 @@ def selection_sort(num: list):
 
 ############################################################################################################
 
+
+#insertion sort
+def insertion_sort(num: list):
+    yield num
+
+    #algo
+
+
+############################################################################################################
+
+
 x = input("Input : ")
 
 match x:
     case "1":
         pyg(selection_sort, numbers)
     case "2":
-        pass
+        pyg(insertion_sort, numbers)
     case "3":
         pass
     case "4":
