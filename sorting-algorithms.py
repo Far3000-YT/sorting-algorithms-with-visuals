@@ -3,7 +3,7 @@ from random import shuffle
 from typing import Callable, Iterator
 
 #generate random list from 1 to x in order then shuffle them to make them not in order
-maxi = 151
+maxi = 201
 numbers = list(range(1, maxi))
 shuffle(numbers)
 
@@ -23,7 +23,7 @@ WELCOME ! Choose the sorting algorithm you want to see :
 def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the callable)
     pygame.init()
 
-    screen_width, screen_height = maxi*6, maxi*3
+    screen_width, screen_height = maxi*5, maxi*2
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption('Sorting Algorithms With Visuals')
 
@@ -43,6 +43,8 @@ def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the c
                 scaled_height = (value / maxi) * screen_height
                 pygame.draw.rect(screen, (255, 255, 140), (i * width, screen_height - scaled_height, width, scaled_height))
             pygame.display.flip()
+
+            pygame.time.wait(50)
         
         except StopIteration:
             pygame.time.wait(5000) #10 sec wait
@@ -56,33 +58,21 @@ def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the c
 #selection sort function
 def selection_sort(num: list):
     yield num #yield the initial state of the list before the sorting starts
+        
+    for start_index in range(len(num) - 1):
+        min_index = start_index
+        
+        #find the minimum value
+        for index in range(start_index + 1, len(num)):
+            if num[index] < num[min_index]:
+                min_index = index
 
-    start_index = 0
-    index = 1
-    min_value = num[start_index]
-
-    #iterate through the list until we hit the last index (so the list will be sorted when that happens)
-    while start_index < len(num):
-        min_value = min(min_value, num[index])
-        if index == len(num) - 1:
-            #swap the 2 indexes in the list
-            num[num.index(min_value)], num[start_index] = num[start_index], num[num.index(min_value)]
-
-            start_index += 1
-            index = start_index
-
-            try:
-                min_value = num[start_index]
-            except Exception:
-                pass #in case we go out of range
-
-        else:
-            index += 1
+        #swap the 2 indexes in the list
+        if min_index != start_index:
+            num[start_index], num[min_index] = num[min_index], num[start_index]
 
         #yield for each iteration
         yield num
-
-    print(num)
 
 
 ############################################################################################################
@@ -92,7 +82,16 @@ def selection_sort(num: list):
 def insertion_sort(num: list):
     yield num
 
-    #algo
+    for s in range(1, len(num)):
+        selected_val = num[s]
+        min_one = s - 1
+
+        while min_one >= 0 and selected_val < num[min_one]:
+            num[min_one + 1] = num[min_one]
+            min_one -= 1
+        
+        num[min_one + 1] = selected_val
+        yield num
 
 
 ############################################################################################################
