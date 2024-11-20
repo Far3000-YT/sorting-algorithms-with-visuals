@@ -3,7 +3,7 @@ from random import shuffle
 from typing import Callable, Iterator
 
 #generate random list from 1 to x in order then shuffle them to make them not in order
-maxi = 201
+maxi = 1500
 numbers = list(range(1, maxi))
 shuffle(numbers)
 
@@ -12,9 +12,9 @@ print("""
 WELCOME ! Choose the sorting algorithm you want to see : 
     [1] - SELECTION SORT
     [2] - INSERTION SORT
-    [3] - BINARY INSERTION SORT
-    [4] - MERGE SORT
-    [5] - QUICK SORT (LR ptrs)
+    [3] - MERGE SORT
+    [4] - QUICK SORT (LR ptrs)
+    [5] - RADIX SORT ()
 """)
 
 ############################################################################################################
@@ -23,7 +23,7 @@ WELCOME ! Choose the sorting algorithm you want to see :
 def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the callable)
     pygame.init()
 
-    screen_width, screen_height = maxi*5, maxi*2
+    screen_width, screen_height = maxi, maxi/3
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption('Sorting Algorithms With Visuals')
 
@@ -43,11 +43,9 @@ def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the c
                 scaled_height = (value / maxi) * screen_height
                 pygame.draw.rect(screen, (255, 255, 140), (i * width, screen_height - scaled_height, width, scaled_height))
             pygame.display.flip()
-
-            pygame.time.wait(50)
         
         except StopIteration:
-            pygame.time.wait(5000) #10 sec wait
+            pygame.time.wait(5000) #5 sec wait
             break
     
     pygame.quit()
@@ -97,6 +95,13 @@ def insertion_sort(num: list):
 ############################################################################################################
 
 
+def merge_sort(num: list):
+    pass
+
+
+############################################################################################################
+
+
 x = input("Input : ")
 
 match x:
@@ -105,7 +110,7 @@ match x:
     case "2":
         pyg(insertion_sort, numbers)
     case "3":
-        pass
+        pyg(merge_sort, numbers)
     case "4":
         pass
     case "5":
