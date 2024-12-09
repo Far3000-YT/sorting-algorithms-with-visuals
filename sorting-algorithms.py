@@ -2,6 +2,9 @@ import pygame
 from random import shuffle
 from typing import Callable, Iterator
 
+
+### OBJECTIVE OF THIS : REPRESENT ALL THE SORTING ALGORITHMS VISUALLY ! (the reasonning can sometimes be different)
+
 #generate random list from 1 to x in order then shuffle them to make them not in order
 maxi = 1500
 numbers = list(range(1, maxi))
@@ -17,7 +20,9 @@ WELCOME ! Choose the sorting algorithm you want to see :
     [5] - RADIX SORT ()
 """)
 
+
 ############################################################################################################
+
 
 # pygame functions here
 def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the callable)
@@ -52,6 +57,7 @@ def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the c
 
 
 ############################################################################################################
+
 
 #selection sort function
 def selection_sort(num: list):
@@ -95,6 +101,7 @@ def insertion_sort(num: list):
 ############################################################################################################
 
 
+#merge sort
 def merge_sort(num: list):
     pass
 
