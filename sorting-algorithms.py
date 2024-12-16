@@ -6,7 +6,7 @@ from typing import Callable, Iterator
 ### OBJECTIVE OF THIS : REPRESENT ALL THE SORTING ALGORITHMS VISUALLY ! (the reasonning can sometimes be different)
 
 #generate random list from 1 to x in order then shuffle them to make them not in order
-maxi = 1000
+maxi = 1500
 numbers = list(range(1, maxi))
 shuffle(numbers)
 
@@ -28,7 +28,7 @@ WELCOME ! Choose the sorting algorithm you want to see :
 def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the callable)
     pygame.init()
 
-    screen_width, screen_height = maxi, maxi/2
+    screen_width, screen_height = maxi, maxi/3
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption('Sorting Algorithms With Visuals')
 
@@ -50,8 +50,7 @@ def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the c
             pygame.display.flip()
         
         except StopIteration:
-            pygame.time.wait(5000) #5 sec wait
-            break
+            pass
     
     pygame.quit()
 
