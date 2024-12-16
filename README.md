@@ -4,7 +4,7 @@ Trying to recreate all the sorting algorithms on python and represent them with 
 
 ## Demo
 
-Video here
+https://github.com/user-attachments/assets/30332614-c6c7-4d95-90fd-69609854d922
 
 
 ## Algorithms
