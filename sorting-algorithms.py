@@ -6,7 +6,7 @@ from typing import Callable, Iterator
 ### OBJECTIVE OF THIS : REPRESENT ALL THE SORTING ALGORITHMS VISUALLY ! (the reasonning can sometimes be different)
 
 #generate random list from 1 to x in order then shuffle them to make them not in order
-maxi = 1500
+maxi = 1000
 numbers = list(range(1, maxi))
 shuffle(numbers)
 
@@ -28,7 +28,7 @@ WELCOME ! Choose the sorting algorithm you want to see :
 def pyg(funct: Callable[[list], Iterator], num: list): #gpt for this line (the callable)
     pygame.init()
 
-    screen_width, screen_height = maxi, maxi/3
+    screen_width, screen_height = maxi, maxi/2
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption('Sorting Algorithms With Visuals')
 
@@ -103,7 +103,47 @@ def insertion_sort(num: list):
 
 #merge sort
 def merge_sort(num: list):
-    pass
+    n = len(num)
+    yield num
+
+    size = 1
+    while size < n:
+        for start in range(0, n, 2 * size):
+            mid = min(start + size, n)
+            end = min(start + 2 * size, n)
+
+            left = num[start:mid]
+            right = num[mid:end]
+
+            merged = []
+            i = j = 0
+            while i < len(left) and j < len(right):
+                if left[i] <= right[j]:
+                    merged.append(left[i])
+                    i += 1
+                else:
+                    merged.append(right[j])
+                    j += 1
+
+                num[start:start + len(merged)] = merged
+                yield num
+
+            while i < len(left):
+                merged.append(left[i])
+                i += 1
+                num[start:start + len(merged)] = merged
+                yield num
+
+            while j < len(right):
+                merged.append(right[j])
+                j += 1
+                num[start:start + len(merged)] = merged
+                yield num
+
+            num[start:end] = merged
+
+        size *= 2
+    yield num
 
 
 ############################################################################################################
