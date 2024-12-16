@@ -101,22 +101,18 @@ def insertion_sort(num: list):
 ############################################################################################################
 
 
-#merge sort
+#merge sort (with gpt + optimized by me, too lazy to think abt this one)
 def merge_sort(num: list):
-    n = len(num)
+    n, size = len(num), 1
     yield num
 
-    size = 1
     while size < n:
         for start in range(0, n, 2 * size):
-            mid = min(start + size, n)
-            end = min(start + 2 * size, n)
+            mid, end = min(start + size, n), min(start + 2 * size, n)
 
-            left = num[start:mid]
-            right = num[mid:end]
-
-            merged = []
+            left, right, merged = num[start:mid], num[mid:end], []
             i = j = 0
+
             while i < len(left) and j < len(right):
                 if left[i] <= right[j]:
                     merged.append(left[i])
@@ -141,7 +137,6 @@ def merge_sort(num: list):
                 yield num
 
             num[start:end] = merged
-
         size *= 2
     yield num
 
