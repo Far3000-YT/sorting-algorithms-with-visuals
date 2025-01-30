@@ -1,6 +1,6 @@
 # SORTING ALGORITHMS
 
-Trying to recreate all the sorting algorithms on python and represent them with visuals on pygame.
+Trying to recreate few of the sorting algorithms in python and represent them with visuals using the pygame module !
 
 ## Demo
 
